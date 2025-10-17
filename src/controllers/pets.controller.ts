@@ -6,7 +6,7 @@ type PetQueryParams = {
     species?: string,
     adopted?: 'true' | 'false',
     minAge?: string,
-    maxAge?: string
+    maxAge?: string,
 };
 
 export const getPets = (
@@ -36,7 +36,10 @@ export const getPets = (
     res.status(200).json(filteredPets);
 }
 
-export const getPetById = (req: Request<{id: string}>, res: Response<Pet | {message: string}>): void => {
+export const getPetById = (
+    req: Request<{id: string}>,
+    res: Response<Pet | {message: string}>
+): void => {
     const { id } = req.params;
     const pet: Pet | undefined = pets.find((pet: Pet): boolean => pet.id.toString() === id);
     if (!pet) {
